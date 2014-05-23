@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="lib/semantic-ui/build/packaged/css/semantic.css">
+</head>
+<body ng-app="app">
+
+	<div class="ui one column grid" ng-controller="CommentsController">
+		<div class="column">
+			<div class="ui piled blue segment">
+				<h2 class="ui header">
+					<i class="icon inverted circular blue comment"></i> Comments
+				</h2>
+				<div class="ui comments">
+					<div class="comment" ng-repeat="comment in comments">
+						<div class="content">
+							<span class="author">{{comment.user.name}}</span>
+							<div class="metadata">
+								<span class="date">{{comment.date.toString()}}</span>
+							</div>
+							<div class="text">
+								{{comment.text}}
+							</div>
+							<div class="actions">
+								<a class="delete" ng-click="remove(comment)">Delete</a>
+							</div>
+						</div>
+					</div>
+					<form class="ui reply form" ng-submit="add(newComment)">
+						<div class="field">
+							<textarea ng-model="newComment.text"></textarea>
+						</div>
+						<button class="ui fluid blue labeled submit icon button">
+							<i class="icon edit"></i> Add Reply
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/angular-resource/angular-resource.min.js"></script>
+	<script src="angular-module.js"></script>
+	<script src="controllers/comments.js"></script>
+	<script src="factories/commentFactory.js"></script>
+	<script src="factories/userFactory.js"></script>
+	<script src="factories/commentService.js"></script>
+</body>
+</html>
